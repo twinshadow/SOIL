@@ -1,0 +1,21 @@
+NAME:=		SOIL
+SRCS:=		$(shell find . -maxdepth 1 -name '*.c')
+OBJS:=		${SRCS:.c=.o}
+BIN:=		${NAME}.a
+LDBIN:=		${NAME}.dynlib
+
+CFLAGS=		-I. -Wall
+LDFLAGS=	-framework OpenGL -framework CoreFoundation
+
+all: ${BIN} ${LDBIN}
+
+${BIN}: ${OBJS}
+	ar r $@ $^
+	ranlib $@
+
+${LDBIN}: ${OBJS}
+	${CC} ${CFLAGS} ${LDFLAGS} -shared -o $@ $^
+
+.PHONY: clean
+clean:
+	rm -f ${OBJS} ${BIN} ${LDBIN}
