@@ -2,7 +2,7 @@ NAME:=		SOIL
 SRCS:=		$(shell find . -maxdepth 1 -name '*.c')
 OBJS:=		${SRCS:.c=.o}
 BIN:=		lib${NAME}.a
-LDBIN:=		lib${NAME}.dynlib
+LDBIN:=		lib${NAME}.dylib
 
 CFLAGS=		-O2 -I. -Wall
 LDFLAGS=	-framework OpenGL -framework CoreFoundation
